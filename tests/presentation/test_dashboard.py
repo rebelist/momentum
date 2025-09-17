@@ -26,7 +26,7 @@ class TestDashboardIndexPage:
         mock_ui.header.assert_called_once()
         mock_ui.row.assert_called_once()
         mock_ui.input.assert_called_once_with('Ticker Symbol', placeholder='e.g., VOO')
-        mock_ui.number.assert_any_call(label='Simulations', min=10, max=5000, value=100, step=1)
+        mock_ui.number.assert_any_call(label='Simulations', min=10, max=10000, value=100, step=1)
         mock_ui.number.assert_any_call(label='Forecast Days', min=30, max=600, value=200, step=1)
         mock_ui.label.assert_any_call()
         mock_ui.button.assert_called_once_with('Run Simulation')
