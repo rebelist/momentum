@@ -18,7 +18,9 @@ def index() -> None:
 
     with ui.row().classes('items-center'):
         ticker = ui.input('Ticker Symbol', placeholder='e.g., VOO')
-        simulation_count = ui.number(label='Simulations', min=10, max=5000, value=100, step=1).classes('ml-4 w-[120px]')
+        simulation_count = ui.number(label='Simulations', min=10, max=10000, value=100, step=1).classes(
+            'ml-4 w-[120px]'
+        )
         forecast_length = ui.number(label='Forecast Days', min=30, max=600, value=200, step=1).classes('ml-4 w-[120px]')
         title = ui.label().classes('ml-[50px] text-xl text-bold text-gray-400')
 
