@@ -26,7 +26,7 @@ class MonteCarloSimulator(FinanceSimulator):
         prices = numpy.array(list(history.values()), dtype=float)
         returns = numpy.log(prices[1:] / prices[:-1])
 
-        # Business-day future timeline (skip weekends)
+        # Business day future timeline (skip weekends)
         future_dates = bdate_range(start=start_date + Timedelta(days=1), periods=forecast_length)
         future_timestamps = [int(date.timestamp() * 1000) for date in future_dates]
 
