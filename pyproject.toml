@@ -1,0 +1,108 @@
+[project]
+name = "rebelist-momentum"
+version = "0.1.0"
+description = "Momentum is a project designed for learning and experimentation with financial modeling. It allows you to select a stock or index and uses Monte Carlo simulations to project potential future price evolution."
+authors = [{ name = "Fran", email = "rebelist.software@icloud.com" }]
+requires-python = ">=3.13,<4.0"
+readme = "README.md"
+dependencies = [
+    "dependency-injector>=4.47.1,<5.0.0",
+    "nicegui[highcharts]>=2.24.1",
+    "yfinance>=0.2.65",
+    "pandas>=2.3.2",
+    "numpy>=2.3.3",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.3.0,<5.0.0",
+    "pyright>=1.1.405,<2.0.0",
+    "pytest>=8.4.2,<9.0.0",
+    "pytest-cov>=7.0.0,<8.0.0",
+    "pytest-mock>=3.15.0,<4.0.0",
+    "ruff>=0.12.13,<1.0.0",
+    "types-mock>=5.2.0.20250809,<6.0.0",
+    "httpx>=0.28.1,<0.29.0",
+    "pandas-stubs>=2.3.2.250827",
+]
+
+[tool.uv]
+package = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rebelist"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+include = ["src", "tests"]
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+reportUnknownMemberType = false
+reportUnknownLambdaType = false
+exclude = [
+    "**/__pycache__"
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = "single"
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = [
+    "A", # Aesthetic rules (e.g., blank lines, comment formatting)
+    "E", # Errors (e.g., syntax errors, indentation issues)
+    "W", # Warnings (e.g., line length, trailing whitespace)
+    "F", # Pyflakes (e.g., unused imports, undefined variables)
+    "I", # Import rules (e.g., import order, unused imports)
+    "B", # Bugbear (e.g., potential bugs, mutable default arguments)
+    "C4", # McCabe complexity (e.g., function complexity)
+    "N", # Naming conventions (e.g., PEP8 naming standards)
+    "D", # Docstrings (e.g., missing docstrings, formatting issues)
+    "RUF100", # Mistakes (e.g., common mistakes or poor patterns)
+]
+ignore = [
+    "ANN", # Disable all type annotation-related checks
+    "PYI", # Disable checks for .pyi stub files
+    "PLR", # Disable Pylint rules related to typing
+    "D107", # Disable documentation on __init__ methods
+    "D100", # Disable missing docstring in public module
+    "D104", # Disable missing docstring in public package
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--strict-markers --strict-config"
+markers = [
+    "unit: Unit tests",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+omit = [
+    "*/site-packages/*",
+    "*/dependency_injector/*",
+    "**/__init__.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.coverage.html]
+directory = "var/coverage"
