@@ -7,6 +7,7 @@ class Stock:
 
     name: str
     ticker: str
+    currency: str
     history: dict[int, float]
 
 

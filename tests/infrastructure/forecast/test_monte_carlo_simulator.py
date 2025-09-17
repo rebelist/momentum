@@ -15,7 +15,7 @@ class TestMonteCarloSimulator:
         # Prepare a stock with some history
         now = datetime(2025, 9, 17, 10, 0, 0)
         timestamps: dict[int, float] = {int((now - timedelta(days=i)).timestamp() * 1000): 100 + i for i in range(10)}
-        stock = Stock(name='TestStock', ticker='TST', history=timestamps)
+        stock = Stock(name='TestStock', ticker='TST', currency='USD', history=timestamps)
 
         simulator = MonteCarloSimulator()
         forecast_length = 5
@@ -36,16 +36,16 @@ class TestMonteCarloSimulator:
 
     def test_simulate_raises_error_on_empty_history(self) -> None:
         """Test that simulate raises ValueError when stock.history is empty."""
-        stock = Stock(name='EmptyStock', ticker='EMP', history={})
+        stock = Stock(name='EmptyStock', ticker='EMP', currency='USD', history={})
         simulator = MonteCarloSimulator()
-        with pytest.raises(ValueError, match='History is empty'):
+        with pytest.raises(ValueError, match='The stock has no price history.'):
             simulator.simulate(stock, simulation_count=10, forecast_length=5)
 
     def test_simulate_with_constant_prices(self, mocker: MockerFixture) -> None:
         """Test simulate behavior when stock prices are constant with deterministic randomness."""
         now = datetime(2025, 9, 17, 10, 0, 0)
         timestamps = {int((now - timedelta(days=i)).timestamp() * 1000): 100.0 for i in range(10)}
-        stock = Stock(name='ConstantStock', ticker='CONST', history=timestamps)
+        stock = Stock(name='ConstantStock', ticker='CONST', currency='USD', history=timestamps)
 
         mocker.patch('numpy.random.normal', return_value=0.0, autospec=True)
 

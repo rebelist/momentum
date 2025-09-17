@@ -16,7 +16,7 @@ class TestYahooProvider:
             {'Close': [100.0, 101.0]}, index=[Timestamp('2025-09-15 00:00'), Timestamp('2025-09-16')]
         )
         mock_ticker = mocker.MagicMock(spec=Ticker)
-        mock_ticker.info = {'regularMarketPrice': 101.0, 'longName': 'Test Stock'}
+        mock_ticker.info = {'regularMarketPrice': 101.0, 'longName': 'Test Stock', 'currency': 'USD'}
         mock_ticker.history.return_value = mock_history
 
         mocker.patch(
@@ -32,6 +32,7 @@ class TestYahooProvider:
         assert isinstance(stock, Stock)
         assert stock.name == 'Test Stock'
         assert stock.ticker == 'TST'
+        assert stock.currency == 'USD'
         expected_history: dict[int, float] = {
             int(Timestamp('2025-09-15').timestamp() * 1000): 100.0,
             int(Timestamp('2025-09-16').timestamp() * 1000): 101.0,

@@ -86,7 +86,7 @@ class TestDashboard:
         mock_forecast_length.value = 30
         mock_chart = mocker.MagicMock(spec=Column)
 
-        stock = Stock(name='Microsoft', ticker='MSFT', history={})
+        stock = Stock(name='Microsoft', ticker='MSFT', currency='USD', history={})
         forecast = Forecast(
             stock=stock,
             upper=[(1, 200.0)],

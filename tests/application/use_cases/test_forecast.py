@@ -13,7 +13,7 @@ class TestGetStockForecastUseCase:
         mock_simulator = mocker.MagicMock()
         use_case = GetStockForecastUseCase(mock_provider, mock_simulator)
 
-        stock = Stock(name='Test Stock', ticker='TST', history={1: 100.0})
+        stock = Stock(name='Test Stock', ticker='TST', currency='USD', history={1: 100.0})
         forecast = Forecast(stock, upper=[(1, 101.0)], median=[(1, 100.0)], lower=[(1, 99.0)])
 
         mock_provider.get_stock.return_value = stock

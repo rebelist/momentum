@@ -52,7 +52,10 @@ class Dashboard:
                             'year': '%b %Y',
                         },
                     },
-                    'yAxis': {'title': {'text': 'Price'}},
+                    'yAxis': {
+                        'title': {'text': 'Price'},
+                    },
+                    'tooltip': {'valueSuffix': f' {forecast.stock.currency}'},
                     'plotOptions': {
                         'area': {'lineWidth': 2, 'fillOpacity': 0.3},
                         'line': {'lineWidth': 2},

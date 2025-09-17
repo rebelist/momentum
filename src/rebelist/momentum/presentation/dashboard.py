@@ -31,4 +31,4 @@ def index() -> None:
 
 
 if __name__ in {'__main__', '__mp_main__'}:
-    ui.run(show=False, reload=False)
+    ui.run(show=False, reload=False, title='Momentum - Future Stock Price Simulation')

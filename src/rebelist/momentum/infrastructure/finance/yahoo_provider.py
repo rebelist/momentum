@@ -49,9 +49,11 @@ class YahooProvider(FinanceProvider):
             )
 
         name = cast(str, ticker.info.get('longName'))
+        currency = cast(str, ticker.info.get('currency'))
+
         history = {
             int(cast(Timestamp, date).timestamp() * 1000): float(cast(numpy.float64, row['Close']))
             for date, row in ticker_history.iterrows()
         }
 
-        return Stock(name, symbol, history)
+        return Stock(name, symbol, currency, dict(sorted(history.items())))
