@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-   <a href="https://github.com/rebelist/momentum/releases"><img src="https://img.shields.io/badge/Release-0.1.0--dev-e63946?logo=github&logoColor=white" alt="Release" /></a>
+   <a href="https://github.com/rebelist/momentum/releases"><img src="https://img.shields.io/badge/Release-0.1.1--dev-e63946?logo=github&logoColor=white" alt="Release" /></a>
    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3" /></a>
    <a href="https://github.com/rebelist/momentum/actions/workflows/ci.yaml"><img alt="Tests" src="https://github.com/rebelist/momentum/actions/workflows/ci.yaml/badge.svg" /></a>
    <a href="https://codecov.io/gh/rebelist/momentum" ><img alt="Coverage" src="https://codecov.io/gh/rebelist/momentum/graph/badge.svg?token=1W5Z73O4UN"/></a>
