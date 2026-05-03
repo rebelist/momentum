@@ -26,12 +26,18 @@ class Dashboard:
         if not self.validate():
             return
 
+        if self.simulation_count.value is None or self.forecast_length.value is None:
+            ui.notify('Please enter numeric values.', color='red')
+            return
+
+        ticker = str(self.ticker.value).upper()
+        simulation_count = int(self.simulation_count.value)
+        forecast_length = int(self.forecast_length.value)
+
         self.chart.clear()
 
         try:
-            forecast: Forecast = self.get_stock_forecast(
-                str(self.ticker.value).upper(), int(self.simulation_count.value), int(self.forecast_length.value)
-            )
+            forecast: Forecast = self.get_stock_forecast(ticker, simulation_count, forecast_length)
         except ProviderError as error:
             ui.notify(f'ERROR: {error}', color='red')
             return
@@ -86,9 +92,9 @@ class Dashboard:
 
     def validate(self) -> bool:
         """Validates the dashboard."""
-        ticker: str = self.ticker.value.strip().upper()
+        ticker = self.ticker.value or ''
 
-        if not ticker:
+        if not ticker.strip():
             ui.notify('Please enter a ticker symbol.', color='red')
             return False
 
